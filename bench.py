@@ -3,26 +3,24 @@ from inflection import underscore
 
 
 def test_snake(benchmark):
-    benchmark(snake, "We are gonna make it")
+    benchmark(snake, "DeviceType")
 
 
 def test_inflection_underscore(benchmark):
-    benchmark(underscore, "We are gonna make it")
+    benchmark(underscore, "DeviceType")
 
 
 def test_snake_long_sentence(benchmark):
-    benchmark(snake, "We are gonna make it" * 10_000)
+    benchmark(snake, "DeviceType" * 10_000)
 
 
 def test_inflection_underscore_long_sentence(benchmark):
-    benchmark(underscore, "We are gonna make it" * 10_000)
+    benchmark(underscore, "DeviceType" * 10_000)
 
 
 def test_snake_many(benchmark):
-    benchmark(snake_many, ["We are gonna make it"] * 10_000)
+    benchmark(snake_many, ["DeviceType"] * 10_000)
 
 
 def test_inflection_underscore_many(benchmark):
-    benchmark(
-        lambda lst: [underscore(x) for x in lst], ["We are gonna make it"] * 10_000
-    )
+    benchmark(lambda lst: [underscore(x) for x in lst], ["DeviceType"] * 10_000)
