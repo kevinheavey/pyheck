@@ -17,7 +17,6 @@ pytest-benchmark = "^3.4.1"
 inflection = "^0.5.1"
 flake8 = "^4.0.1"
 Sphinx = "^4.3.2"
-sphinx-material = "^0.0.35"
 sphinx-rtd-theme = "^1.0.0"
 
 [build-system]
