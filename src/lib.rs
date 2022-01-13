@@ -19,6 +19,14 @@ fn snake(s: String) -> String {
     s.to_snake_case()
 }
 
+/// Convert a list of strings to snake_case.
+///
+/// In snake_case, word boundaries are indicated by underscores.
+///
+/// Example:
+///     >>> from pyheck import snake_many
+///     >>> snake_many(["DeviceType", "fooBar"])
+///     ['device_type', 'foo_bar']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
 fn snake_many(strings: Vec<String>) -> Vec<String> {
@@ -40,6 +48,24 @@ fn lower_camel(s: String) -> String {
     s.to_lower_camel_case()
 }
 
+/// Convert a list of strings to lowerCamelCase.
+///
+/// In lowerCamelCase, word boundaries are indicated by capital letters,
+/// excepting the first word.
+///
+/// Example:
+///     >>> from pyheck import lower_camel_many
+///     >>> lower_camel_many(["It is we", "who built these"])
+///     ['itIsWe', 'whoBuiltThese']
+#[pyfunction]
+#[pyo3(text_signature = "(strings)")]
+fn lower_camel_many(strings: Vec<String>) -> Vec<String> {
+    strings
+        .par_iter()
+        .map(|s| s.to_lower_camel_case())
+        .collect()
+}
+
 /// Convert to Title Case.
 ///
 /// In Title Case, word boundaries are indicated by spaces, and every word is
@@ -53,6 +79,21 @@ fn lower_camel(s: String) -> String {
 #[pyo3(text_signature = "(s)")]
 fn title(s: String) -> String {
     s.to_title_case()
+}
+
+/// Convert a list of strings to Title Case.
+///
+/// In Title Case, word boundaries are indicated by spaces, and every word is
+/// capitalized.
+///
+/// Example:
+///     >>> from pyheck import title_many
+///     >>> title_many(["We have always", "lived in slums"])
+///     ['We Have Always', 'Lived In Slums']
+#[pyfunction]
+#[pyo3(text_signature = "(strings)")]
+fn title_many(strings: Vec<String>) -> Vec<String> {
+    strings.par_iter().map(|s| s.to_title_case()).collect()
 }
 
 /// Convert to UpperCamelCase.
@@ -70,6 +111,24 @@ fn upper_camel(s: String) -> String {
     s.to_upper_camel_case()
 }
 
+/// Convert a list of strings to UpperCamelCase.
+///
+/// In UpperCamelCase, word boundaries are indicated by capital letters,
+/// including the first word.
+///
+/// Example:
+///     >>> from pyheck import upper_camel_many
+///     >>> upper_camel_many(["We are not", "in the least"])
+///     ['WeAreNot', 'InTheLeast']
+#[pyfunction]
+#[pyo3(text_signature = "(strings)")]
+fn upper_camel_many(strings: Vec<String>) -> Vec<String> {
+    strings
+        .par_iter()
+        .map(|s| s.to_upper_camel_case())
+        .collect()
+}
+
 /// Convert to kebab-case.
 ///
 /// In kebab-case, word boundaries are indicated by hyphens.
@@ -82,6 +141,20 @@ fn upper_camel(s: String) -> String {
 #[pyo3(text_signature = "(s)")]
 fn kebab(s: String) -> String {
     s.to_kebab_case()
+}
+
+/// Convert list of strings to kebab-case.
+///
+/// In kebab-case, word boundaries are indicated by hyphens.
+///
+/// Example:
+///     >>> from pyheck import kebab_many
+///     >>> kebab_many(["We are going", "to inherit the earth."])
+///     ['we-are-going', 'to-inherit-the-earth']
+#[pyfunction]
+#[pyo3(text_signature = "(strings)")]
+fn kebab_many(strings: Vec<String>) -> Vec<String> {
+    strings.par_iter().map(|s| s.to_kebab_case()).collect()
 }
 
 /// Convert to SHOUTY-KEBAB-CASE.
@@ -99,6 +172,24 @@ fn shouty_kebab(s: String) -> String {
     s.to_shouty_kebab_case()
 }
 
+/// Convert a list of strings to SHOUTY-KEBAB-CASE.
+///
+/// In SHOUTY-KEBAB-CASE, word boundaries are indicated by hyphens and all
+/// words are in uppercase.
+///
+/// Example:
+///     >>> from pyheck import shouty_kebab_many
+///     >>> shouty_kebab_many(["We are going", "to inherit the earth."])
+///     ['WE-ARE-GOING', 'TO-INHERIT-THE-EARTH']
+#[pyfunction]
+#[pyo3(text_signature = "(strings)")]
+fn shouty_kebab_many(strings: Vec<String>) -> Vec<String> {
+    strings
+        .par_iter()
+        .map(|s| s.to_shouty_kebab_case())
+        .collect()
+}
+
 /// Convert to SHOUTY_SNAKE_CASE.
 ///
 /// In SHOUTY_SNAKE_CASE, word boundaries are indicated by underscores and all
@@ -114,15 +205,39 @@ fn shouty_snake(s: String) -> String {
     s.to_shouty_snake_case()
 }
 
+/// Convert a list of strings to SHOUTY_SNAKE_CASE.
+///
+/// In SHOUTY_SNAKE_CASE, word boundaries are indicated by underscores and all
+/// words are in uppercase.
+///
+/// Example:
+///     >>> from pyheck import shouty_snake_many
+///     >>> shouty_snake_many(["That world is", "growing in this minute."])
+///     ['THAT_WORLD_IS', 'GROWING_IN_THIS_MINUTE']
+#[pyfunction]
+#[pyo3(text_signature = "(s)")]
+fn shouty_snake_many(strings: Vec<String>) -> Vec<String> {
+    strings
+        .par_iter()
+        .map(|s| s.to_shouty_snake_case())
+        .collect()
+}
+
 #[pymodule]
 fn pyheck(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(snake, m)?)?;
     m.add_function(wrap_pyfunction!(snake_many, m)?)?;
     m.add_function(wrap_pyfunction!(lower_camel, m)?)?;
+    m.add_function(wrap_pyfunction!(lower_camel_many, m)?)?;
     m.add_function(wrap_pyfunction!(title, m)?)?;
+    m.add_function(wrap_pyfunction!(title_many, m)?)?;
     m.add_function(wrap_pyfunction!(upper_camel, m)?)?;
+    m.add_function(wrap_pyfunction!(upper_camel_many, m)?)?;
     m.add_function(wrap_pyfunction!(kebab, m)?)?;
+    m.add_function(wrap_pyfunction!(kebab_many, m)?)?;
     m.add_function(wrap_pyfunction!(shouty_kebab, m)?)?;
+    m.add_function(wrap_pyfunction!(shouty_kebab_many, m)?)?;
     m.add_function(wrap_pyfunction!(shouty_snake, m)?)?;
+    m.add_function(wrap_pyfunction!(shouty_snake_many, m)?)?;
     Ok(())
 }
