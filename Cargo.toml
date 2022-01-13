@@ -14,3 +14,4 @@ features = ["extension-module"]
 
 [dependencies]
 heck = { version = "0.4.0", features = ["unicode"] }
+rayon = "1.5.1"

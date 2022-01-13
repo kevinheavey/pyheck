@@ -16,7 +16,7 @@ pip install pyheck
 ```
 poetry install
 ```
-3. Activate the poetry shell.
+3. Activate the poetry shell:
 
 ```sh
 poetry shell

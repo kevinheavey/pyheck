@@ -3,6 +3,7 @@ use heck::{
     ToUpperCamelCase,
 };
 use pyo3::prelude::*;
+use rayon::prelude::*;
 
 /// Convert to snake_case.
 ///
@@ -16,6 +17,12 @@ use pyo3::prelude::*;
 #[pyo3(text_signature = "(s)")]
 fn snake(s: String) -> String {
     s.to_snake_case()
+}
+
+#[pyfunction]
+#[pyo3(text_signature = "(strings)")]
+fn snake_many(strings: Vec<String>) -> Vec<String> {
+    strings.par_iter().map(|s| s.to_snake_case()).collect()
 }
 
 /// Convert to lowerCamelCase.
@@ -110,6 +117,7 @@ fn shouty_snake(s: String) -> String {
 #[pymodule]
 fn pyheck(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(snake, m)?)?;
+    m.add_function(wrap_pyfunction!(snake_many, m)?)?;
     m.add_function(wrap_pyfunction!(lower_camel, m)?)?;
     m.add_function(wrap_pyfunction!(title, m)?)?;
     m.add_function(wrap_pyfunction!(upper_camel, m)?)?;
