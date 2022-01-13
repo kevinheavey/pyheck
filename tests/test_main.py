@@ -10,3 +10,6 @@ def test_kebab():
 
 def test_unicode():
     assert snake("XΣXΣ baﬄe") == "xσxς_baﬄe"
+
+
+# note that most of the tests happen via `sphinx doctest`.

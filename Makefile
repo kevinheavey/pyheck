@@ -1,6 +1,12 @@
 test:
 	poetry run pytest && poetry run make doctest
 
+lint:
+	poetry run flake8 && poetry run mypy
+
+fmt:
+	poetry run black .
+
 # Minimal makefile for Sphinx documentation
 #
 
