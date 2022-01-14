@@ -215,7 +215,7 @@ fn shouty_snake(s: String) -> String {
 ///     >>> shouty_snake_many(["That world is", "growing in this minute."])
 ///     ['THAT_WORLD_IS', 'GROWING_IN_THIS_MINUTE']
 #[pyfunction]
-#[pyo3(text_signature = "(s)")]
+#[pyo3(text_signature = "(strings)")]
 fn shouty_snake_many(strings: Vec<String>) -> Vec<String> {
     strings
         .par_iter()

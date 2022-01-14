@@ -7,6 +7,9 @@ lint:
 fmt:
 	poetry run black .
 
+serve:
+	poetry run python -m http.server -d docs/_build/html
+
 # Minimal makefile for Sphinx documentation
 #
 
