@@ -35,8 +35,7 @@ API
 Why use PyHeck?
 ---------------
 
-Python already has a popular case conversion library in `inflection <https://github.com/jpvanhal/inflection>`_.
+PyHeck offers significant (5-10x) performance benefits over the established case conversion library, `inflection <https://github.com/jpvanhal/inflection>`_.
 
-While ``pyheck`` offers no performance benefits over ``inflection``, not all the functions overlap between the two libraries,
-and some apparently similar functions differ in subtle ways. So one reason to use ``pyheck`` is to achieve the same behaviour
-as ``heck``.
+However not all the functions overlap between the two libraries,
+and some apparently similar functions may differ in subtle ways. So be careful to check edge cases in whichever library you choose.
