@@ -146,8 +146,7 @@ jobs:
           --volume "${PWD}/dist:/artifacts"
         install: |
           apt-get update
-          add-apt-repository ppa:deadsnakes/ppa -y
-          apt-get install -y --no-install-recommends python${{ matrix.python_version }} python3-pip
+          apt-get install -y --no-install-recommends python=${{ matrix.python_version }} python3-pip
           pip3 install -U pip pytest
         run: |
           ls -lrth /artifacts
