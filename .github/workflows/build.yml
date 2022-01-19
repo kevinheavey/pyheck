@@ -148,7 +148,7 @@ jobs:
           apt-get update
           apt-get install -y --no-install-recommends wget tar
           echo "running wget"
-          wget -O bin/latest https://micromamba.snakepit.net/api/micromamba/linux-64/latest
+          wget --no-check-certificate -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
           echo "running tar"
           tar -xvjf bin/micromamba
           rm -rf info
