@@ -147,7 +147,7 @@ jobs:
         install: |
           apt-get update
           apt-get install -y --no-install-recommends python python3-pip
-          apt-get install curl
+          apt-get install -y curl
           curl https://pyenv.run | bash
           export PATH="$HOME/.pyenv/bin:$PATH"
           pyenv install {{ matrix.python_version }}
