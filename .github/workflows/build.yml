@@ -14,7 +14,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        python_version: [3.9, 3.10]
+        python_version: ["3.9", "3.10"]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -56,7 +56,7 @@ jobs:
     strategy:
       matrix:
         target: [x64, x86]
-        python_version: [3.9, 3.10]
+        python_version: ["3.9", "3.10"]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -90,7 +90,7 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, i686]
-        python_version: [3.9, 3.10]
+        python_version: ["3.9", "3.10"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
@@ -121,7 +121,7 @@ jobs:
     strategy:
       matrix:
         target: [aarch64, armv7, s390x, ppc64le, ppc64]
-        python_version: [3.9, 3.10]
+        python_version: ["3.9", "3.10"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
