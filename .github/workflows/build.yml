@@ -148,12 +148,12 @@ jobs:
           apt-get update
           apt install software-properties-common -y
           add-apt-repository ppa:deadsnakes/ppa
-          apt-get install -y --no-install-recommends python${{ matrix.python_version }} python3-pip
-          pip3 install -U pip pytest
+          apt-get install -y --no-install-recommends python${{ matrix.python_version }}
+          python${{ matrix.python_version }} -m pip install pytest
         run: |
           ls -lrth /artifacts
-          pip3 install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
-          pytest
+          python${{ matrix.python_version }} -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
+          python${{ matrix.python_version }} -m pytest
     - name: Upload wheels
       uses: actions/upload-artifact@v2
       with:
