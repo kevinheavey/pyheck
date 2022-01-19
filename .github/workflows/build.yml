@@ -146,8 +146,7 @@ jobs:
           --volume "${PWD}/dist:/artifacts"
         install: |
           apt-get update
-          apt-get install -y --no-install-recommends python python3-pip
-          apt-get install -y curl
+          apt-get install -y --no-install-recommends python python3-pip curl git
           curl https://pyenv.run | bash
           export PATH="$HOME/.pyenv/bin:$PATH"
           pyenv install {{ matrix.python_version }}
