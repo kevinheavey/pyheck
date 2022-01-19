@@ -146,18 +146,11 @@ jobs:
           --volume "${PWD}/dist:/artifacts"
         install: |
           apt-get update
-          apt-get install -y --no-install-recommends python python3-pip curl git make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-          curl https://pyenv.run | bash
-          export PYENV_ROOT="$HOME/.pyenv"
-          export PATH="$PYENV_ROOT/bin:$PATH"
-          eval "$(pyenv init --path)"
-          eval "$(pyenv init -)"
-          pyenv install ${{ matrix.python_version }}.0
-          echo "ran pyenv install"
-          pyenv global ${{ matrix.python_version }}.0
-          echo "ran pyenv global"
-          python -m pip install pytest
-          "echo ran pip install pytest"
+          apt-get install -y --no-install-recommends wget tar
+          ./bin/micromamba shell init -s bash -p ~/micromamba
+          source ~/.bashrc
+          micromamba activate
+          micromamba install python=${{ matrix.python_version }}
         run: |
           ls -lrth /artifacts
           python -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
