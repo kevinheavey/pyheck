@@ -148,9 +148,11 @@ jobs:
           apt-get update
           apt-get install -y --no-install-recommends wget tar
           echo "running wget"
-          wget --no-check-certificate -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+          wget --no-check-certificate -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj micromamba
+          echo "ls ."
+          ls .
           echo "running shell init"
-          ./bin/micromamba shell init -s bash -p ~/micromamba
+          ./micromamba shell init -s bash -p ~/micromamba
           source ~/.bashrc
           micromamba activate
           micromamba install python=${{ matrix.python_version }}
