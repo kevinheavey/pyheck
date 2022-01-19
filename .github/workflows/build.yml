@@ -148,7 +148,8 @@ jobs:
           apt-get update
           apt install software-properties-common -y
           add-apt-repository ppa:deadsnakes/ppa
-          apt-get install -y --no-install-recommends python${{ matrix.python_version }}
+          apt-get install -y --no-install-recommends python${{ matrix.python_version }} python3-pip
+          python${{ matrix.python_version }} -m pip install pip
           python${{ matrix.python_version }} -m pip install pytest
         run: |
           ls -lrth /artifacts
