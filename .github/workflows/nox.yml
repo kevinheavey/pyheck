@@ -1,4 +1,4 @@
-name: Nox
+name: nox
 on:
   push:
     branches: [main]
