@@ -13,7 +13,7 @@ env:
 jobs:
   macos:
     runs-on: macos-latest
-      strategy:
+    strategy:
       matrix:
         python_version: ${{ env.python_versions }}
     steps:
