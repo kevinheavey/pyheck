@@ -146,15 +146,16 @@ jobs:
           --volume "${PWD}/dist:/artifacts"
         install: |
           apt-get update
-          apt install software-properties-common -y
-          add-apt-repository ppa:deadsnakes/ppa
-          apt-get install -y --no-install-recommends python${{ matrix.python_version }}
-          python${{ matrix.python_version }} -m ensurepip
-          python${{ matrix.python_version }} -m pip install pytest
+          apt-get install -y --no-install-recommends python python3-pip
+          curl https://pyenv.run | bash
+          export PATH="$HOME/.pyenv/bin:$PATH"
+          pyenv install {{ matrix.python_version }}
+          pyenv global {{ matrix.python_version }}
+          python -m pip install pytest
         run: |
           ls -lrth /artifacts
-          python${{ matrix.python_version }} -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
-          python${{ matrix.python_version }} -m pytest
+          python -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
+          python -m pytest
     - name: Upload wheels
       uses: actions/upload-artifact@v2
       with:
