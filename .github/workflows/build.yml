@@ -147,22 +147,17 @@ jobs:
         install: |
           apt-get update
           apt-get install -y --no-install-recommends wget tar build-essential
-          echo "running wget"
-          wget --no-check-certificate -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
-          echo "ls bin"
-          ls bin
-          echo "ldd /bin/micromamba"
-          echo "/bin/micromamba info"
-          /bin/micromamba info
-          echo "running shell init"
-          /bin/micromamba shell init -s bash -p ~/micromamba
+          mkdir -p ~/miniconda3
+          wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+          bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+          rm -rf ~/miniconda3/miniconda.sh
+          ~/miniconda3/bin/conda init bash
           source ~/.bashrc
-          micromamba activate
-          micromamba install python=${{ matrix.python_version }}
+          conda install python=${{ matrix.python_version }}
         run: |
           ls -lrth /artifacts
-          python -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
-          python -m pytest
+          conda run python -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
+          conda run python -m pytest
     - name: Upload wheels
       uses: actions/upload-artifact@v2
       with:
