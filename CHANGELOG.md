@@ -1,5 +1,12 @@
 # Changelog
 
+
+## [0.1.4] - 2021-01-20
+
+### Added
+
+Add more metadata to pyproject.toml
+
 ## [0.1.3] - 2021-01-20
 
 ### Added
