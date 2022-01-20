@@ -41,19 +41,15 @@ jobs:
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
-      #----------------------------------------------
-      # install your root project
-      #----------------------------------------------
-      - name: Install library
-        run: poetry run maturin develop
 
 
       - name: Doc dependencies
-        run: poetry export --dev --without-hashes -f requirements.txt --output requirements.txt && echo "-e ." >> requirements.txt
+        run: poetry export --dev --without-hashes -f requirements.txt --output requirements.txt
 
       - name: Sphinx Build
         uses: ammaraskar/sphinx-action@0.4
         with:
+          pre-build-command: poetry run maturin develop
           docs-folder: .
 
       - name: Deploy
