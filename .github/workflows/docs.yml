@@ -16,35 +16,9 @@ jobs:
         with:
           python-version: 3.9
 
-      #----------------------------------------------
-      #  -----  install & configure poetry  -----
-      #----------------------------------------------
-      - name: Install and configure Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 1.1.10
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-      #----------------------------------------------
-      #       load cached venv if cache exists
-      #----------------------------------------------
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-      #----------------------------------------------
-      # install dependencies if cache does not exist
-      #----------------------------------------------
-      - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
-
-
-      - name: Doc dependencies
-        run: poetry export --dev --without-hashes -f requirements.txt --output requirements.txt
+      - name: Install python dependencies
+        run: |
+          pip install sphinx sphinx-rtd-theme
 
       - name: Build Wheels
         uses: messense/maturin-action@v1
@@ -56,7 +30,7 @@ jobs:
           pip install pyheck --no-index --find-links dist --force-reinstall
 
       - name: Build documentation
-        run: poetry run make html
+        run: make html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
