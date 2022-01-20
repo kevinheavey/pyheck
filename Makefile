@@ -1,14 +1,14 @@
 test:
-	poetry run pytest && poetry run make doctest
+	pytest && make doctest
 
 lint:
-	poetry run flake8 && poetry run mypy
+	flake8 && mypy .
 
 fmt:
-	poetry run black .
+	black .
 
 serve:
-	poetry run python -m http.server -d docs/_build/html
+	python -m http.server -d docs/_build/html
 
 # Minimal makefile for Sphinx documentation
 #
