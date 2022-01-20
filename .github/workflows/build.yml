@@ -134,32 +134,28 @@ jobs:
         target: ${{ matrix.target }}
         manylinux: auto
         args: --release --out dist --no-sdist
-    - uses: uraimo/run-on-arch-action@v2.0.5
-      if: matrix.target != 'ppc64'
-      name: Install built wheel
-      with:
-        arch: ${{ matrix.target }}
-        distro: ubuntu18.04
-        githubToken: ${{ github.token }}
-        # Mount the dist directory as /artifacts in the container
-        dockerRunArgs: |
-          --volume "${PWD}/dist:/artifacts"
-        install: |
-          apt-get update
-          apt-get install -y --no-install-recommends wget tar build-essential
-          mkdir -p ~/miniconda3
-          wget --no-check-certificate https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-          bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-          rm -rf ~/miniconda3/miniconda.sh
-          ~/miniconda3/bin/conda init bash
-          source ~/.bashrc
-          conda install python=${{ matrix.python_version }}
-        run: |
-          ls -lrth /artifacts
-          conda run python -m pip install ${{ env.name }} --no-index --find-links /artifacts --force-reinstall
-          conda run python -m pytest
     - name: Upload wheels
       uses: actions/upload-artifact@v2
       with:
         name: wheels
         path: dist
+
+  sdist:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 
+    - name: Build sdist
+      uses: messense/maturin-action@v1
+      with:
+        command: sdist
+        rust-toolchain: nightly
+        args: --out dist
+    - name: Upload sdist
+      uses: actions/upload-artifact@v2
+      with:
+        name: wheels
+        path: dist
+    
