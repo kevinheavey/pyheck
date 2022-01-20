@@ -16,6 +16,7 @@
 
 
 # -- Project information -----------------------------------------------------
+import pyheck
 
 project = "PyHeck"
 copyright = "2022, Kevin Heavey"
