@@ -146,7 +146,7 @@ jobs:
           --volume "${PWD}/dist:/artifacts"
         install: |
           apt-get update
-          apt-get install -y --no-install-recommends wget tar gcc-multilib
+          apt-get install -y --no-install-recommends wget tar build-essential
           echo "running wget"
           wget --no-check-certificate -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
           echo "ls bin"
