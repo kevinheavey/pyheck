@@ -15,7 +15,7 @@ use rayon::prelude::*;
 ///     'we_carry_a_new_world_here_in_our_hearts'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn snake(s: String) -> String {
+fn snake(s: &str) -> String {
     s.to_snake_case()
 }
 
@@ -29,7 +29,7 @@ fn snake(s: String) -> String {
 ///     ['device_type', 'foo_bar']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn snake_many(strings: Vec<String>) -> Vec<String> {
+fn snake_many(strings: Vec<&str>) -> Vec<String> {
     strings.par_iter().map(|s| s.to_snake_case()).collect()
 }
 
@@ -44,7 +44,7 @@ fn snake_many(strings: Vec<String>) -> Vec<String> {
 ///     'itIsWeWhoBuiltThesePalacesAndCities'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn lower_camel(s: String) -> String {
+fn lower_camel(s: &str) -> String {
     s.to_lower_camel_case()
 }
 
@@ -59,7 +59,7 @@ fn lower_camel(s: String) -> String {
 ///     ['itIsWe', 'whoBuiltThese']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn lower_camel_many(strings: Vec<String>) -> Vec<String> {
+fn lower_camel_many(strings: Vec<&str>) -> Vec<String> {
     strings
         .par_iter()
         .map(|s| s.to_lower_camel_case())
@@ -77,7 +77,7 @@ fn lower_camel_many(strings: Vec<String>) -> Vec<String> {
 ///     'We Have Always Lived In Slums And Holes In The Wall'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn title(s: String) -> String {
+fn title(s: &str) -> String {
     s.to_title_case()
 }
 
@@ -92,7 +92,7 @@ fn title(s: String) -> String {
 ///     ['We Have Always', 'Lived In Slums']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn title_many(strings: Vec<String>) -> Vec<String> {
+fn title_many(strings: Vec<&str>) -> Vec<String> {
     strings.par_iter().map(|s| s.to_title_case()).collect()
 }
 
@@ -107,7 +107,7 @@ fn title_many(strings: Vec<String>) -> Vec<String> {
 ///     'WeAreNotInTheLeastAfraidOfRuins'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn upper_camel(s: String) -> String {
+fn upper_camel(s: &str) -> String {
     s.to_upper_camel_case()
 }
 
@@ -122,7 +122,7 @@ fn upper_camel(s: String) -> String {
 ///     ['WeAreNot', 'InTheLeast']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn upper_camel_many(strings: Vec<String>) -> Vec<String> {
+fn upper_camel_many(strings: Vec<&str>) -> Vec<String> {
     strings
         .par_iter()
         .map(|s| s.to_upper_camel_case())
@@ -139,7 +139,7 @@ fn upper_camel_many(strings: Vec<String>) -> Vec<String> {
 ///     'we-are-going-to-inherit-the-earth'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn kebab(s: String) -> String {
+fn kebab(s: &str) -> String {
     s.to_kebab_case()
 }
 
@@ -153,7 +153,7 @@ fn kebab(s: String) -> String {
 ///     ['we-are-going', 'to-inherit-the-earth']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn kebab_many(strings: Vec<String>) -> Vec<String> {
+fn kebab_many(strings: Vec<&str>) -> Vec<String> {
     strings.par_iter().map(|s| s.to_kebab_case()).collect()
 }
 
@@ -168,7 +168,7 @@ fn kebab_many(strings: Vec<String>) -> Vec<String> {
 ///     'WE-ARE-GOING-TO-INHERIT-THE-EARTH'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn shouty_kebab(s: String) -> String {
+fn shouty_kebab(s: &str) -> String {
     s.to_shouty_kebab_case()
 }
 
@@ -183,7 +183,7 @@ fn shouty_kebab(s: String) -> String {
 ///     ['WE-ARE-GOING', 'TO-INHERIT-THE-EARTH']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn shouty_kebab_many(strings: Vec<String>) -> Vec<String> {
+fn shouty_kebab_many(strings: Vec<&str>) -> Vec<String> {
     strings
         .par_iter()
         .map(|s| s.to_shouty_kebab_case())
@@ -201,7 +201,7 @@ fn shouty_kebab_many(strings: Vec<String>) -> Vec<String> {
 ///     'THAT_WORLD_IS_GROWING_IN_THIS_MINUTE'
 #[pyfunction]
 #[pyo3(text_signature = "(s)")]
-fn shouty_snake(s: String) -> String {
+fn shouty_snake(s: &str) -> String {
     s.to_shouty_snake_case()
 }
 
@@ -216,7 +216,7 @@ fn shouty_snake(s: String) -> String {
 ///     ['THAT_WORLD_IS', 'GROWING_IN_THIS_MINUTE']
 #[pyfunction]
 #[pyo3(text_signature = "(strings)")]
-fn shouty_snake_many(strings: Vec<String>) -> Vec<String> {
+fn shouty_snake_many(strings: Vec<&str>) -> Vec<String> {
     strings
         .par_iter()
         .map(|s| s.to_shouty_snake_case())
