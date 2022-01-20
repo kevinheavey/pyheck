@@ -1,7 +1,5 @@
 from typing import Sequence
 
-print("hi")
-
 def snake(s: str) -> str:
     """Convert to snake_case.
 
