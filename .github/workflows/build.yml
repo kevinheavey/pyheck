@@ -155,7 +155,7 @@ jobs:
           ls .
           echo "ls bin"
           ls bin
-          "echo ls /bin/micromamba"
+          echo "ls /bin/micromamba"
           ls /bin/micromamba
           echo "/bin/micromamba info"
           /bin/micromamba info
