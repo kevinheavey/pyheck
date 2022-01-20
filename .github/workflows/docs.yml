@@ -46,11 +46,17 @@ jobs:
       - name: Doc dependencies
         run: poetry export --dev --without-hashes -f requirements.txt --output requirements.txt
 
-      - name: Sphinx Build
-        uses: ammaraskar/sphinx-action@0.4
+      - name: Build Wheels
+        uses: messense/maturin-action@v1
         with:
-          pre-build-command: poetry run maturin develop
-          docs-folder: .
+          command: build
+          args: --release --out dist --no-sdist
+      - name: Install module
+        run: |
+          pip install pyheck --no-index --find-links dist --force-reinstall
+
+      - name: Build documentation
+        run: poetry run make html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
