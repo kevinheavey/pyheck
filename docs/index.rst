@@ -42,7 +42,7 @@ API
 Why use PyHeck?
 ---------------
 
-PyHeck offers significant (5-10x) performance benefits over the established case conversion library, `inflection <https://github.com/jpvanhal/inflection>`_.
+PyHeck offers `5-10x performance benefits <https://gist.github.com/kevinheavey/eb97728437ebd0fc9bdbd94da61347f5>`_ over the established case conversion library, `inflection <https://github.com/jpvanhal/inflection>`_.
 
 However not all the functions overlap between the two libraries,
 and some apparently similar functions may differ in subtle ways. So be careful to check edge cases in whichever library you choose.

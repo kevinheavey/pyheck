@@ -1,5 +1,5 @@
 # pyheck
-Python bindings for heck, the Rust case conversion library.
+PyHeck is a case conversion library (for converting strings to snake_case, camelCase etc). It is a thin wrapper around the Rust library [heck](https://github.com/withoutboats/heck).
 
 [Read the documentation.](https://kevinheavey.github.io/pyheck/)
 ## Installation
