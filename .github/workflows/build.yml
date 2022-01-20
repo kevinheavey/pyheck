@@ -155,6 +155,9 @@ jobs:
           ls .
           echo "ls bin"
           ls bin
+          "echo ls /bin/micromamba"
+          echo "/bin/micromamba info"
+          /bin/micromamba info
           echo "running shell init"
           /bin/micromamba shell init -s bash -p ~/micromamba
           source ~/.bashrc
