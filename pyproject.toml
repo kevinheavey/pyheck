@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyheck"
-version = "0.1.3"
+version = "0.1.4"
 description = "Python bindings for heck, the Rust case conversion library"
 authors = ["kevinheavey <kevinheavey123@gmail.com>"]
 
@@ -26,7 +26,7 @@ build-backend = "maturin"
 
 [project]
 name = "pyheck"
-version = "0.1.3"
+version = "0.1.4"
 description = "Python bindings for heck, the Rust case conversion library"
 authors = [ {name = "kevinheavey", email = "kevinheavey123@gmail.com"} ]
 requires-python = ">=3.9"
