@@ -152,7 +152,6 @@ jobs:
           echo "ls bin"
           ls bin
           echo "ldd /bin/micromamba"
-          ldd /bin/micromamba
           echo "/bin/micromamba info"
           /bin/micromamba info
           echo "running shell init"
