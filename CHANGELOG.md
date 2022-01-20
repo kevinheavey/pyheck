@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.3] - 2021-01-20
+
+### Added
+
+Added homepage to pyproject.toml
+
 ## [0.1.2] - 2022-01-20
 
 ### Changed
