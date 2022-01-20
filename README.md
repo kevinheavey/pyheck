@@ -1,10 +1,20 @@
 # pyheck
 Python bindings for heck, the Rust case conversion library.
 
+[Read the documentation.](https://kevinheavey.github.io/pyheck/)
 ## Installation
 
 ```
 pip install pyheck
+```
+
+## Example
+
+```python
+>>> from pyheck import snake
+>>> snake("We carry a new world here, in our hearts.")
+'we_carry_a_new_world_here_in_our_hearts'
+
 ```
 
 ## Development
