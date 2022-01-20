@@ -45,7 +45,7 @@ jobs:
       # install your root project
       #----------------------------------------------
       - name: Install library
-        run: poetry maturin develop
+        run: poetry run maturin develop
 
 
       - name: Doc dependencies
