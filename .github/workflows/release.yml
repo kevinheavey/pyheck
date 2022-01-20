@@ -14,7 +14,7 @@ jobs:
           name: wheels
       - name: Publish to PyPi
         env:
-          MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_PASSWORD }}
+          MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         uses: messense/maturin-action@v1
         with:
           command: upload
