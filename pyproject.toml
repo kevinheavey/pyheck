@@ -28,7 +28,7 @@ build-backend = "maturin"
 name = "pyheck"
 version = "0.1.1"
 description = "Python bindings for heck, the Rust case conversion library"
-authors = [ {name = "kevinheavey", email = "<kevinheavey123@gmail.com>"} ]
+authors = [ {name = "kevinheavey", email = "kevinheavey123@gmail.com"} ]
 requires-python = ">=3.9"
 license = {file = "LICENSE"}
 classifiers = [
