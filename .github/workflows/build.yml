@@ -156,7 +156,7 @@ jobs:
           echo "ls bin"
           ls bin
           echo "running shell init"
-          bin/micromamba shell init -s bash -p ~/micromamba
+          /bin/micromamba shell init -s bash -p ~/micromamba
           source ~/.bashrc
           micromamba activate
           micromamba install python=${{ matrix.python_version }}
