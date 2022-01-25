@@ -1,0 +1,32 @@
+{
+  "name": "test_snake",
+  "mean": 1.4357066211672728e-06
+}
+{
+  "name": "test_inflection_underscore",
+  "mean": 7.751556340622097e-06
+}
+{
+  "name": "test_snake_long_sentence",
+  "mean": 0.06968177333425653
+}
+{
+  "name": "test_inflection_underscore_long_sentence",
+  "mean": 0.30964096000025165
+}
+{
+  "name": "test_inflection_underscore_many",
+  "mean": 0.6991902599991591
+}
+{
+  "name": "test_snake_multiprocessing",
+  "mean": 0.05475532222246531
+}
+{
+  "name": "test_snake_many",
+  "mean": 0.028050331034168704
+}
+{
+  "name": "test_inflection_underscore_multiprocessing",
+  "mean": 0.1628544142861626
+}

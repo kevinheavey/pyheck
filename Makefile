@@ -10,6 +10,9 @@ fmt:
 serve:
 	python -m http.server -d docs/_build/html
 
+bench:
+	pytest bench.py --benchmark-json bench.tmp && jq '.benchmarks[] | {name, "mean": .stats["mean"]} ' bench.tmp > bench.json && rm bench.tmp
+
 # Minimal makefile for Sphinx documentation
 #
 

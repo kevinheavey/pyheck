@@ -27,6 +27,8 @@ Installation
 
     pip install pyheck
 
+Note: requires Python >= 3.9.
+
 API
 ---
 
