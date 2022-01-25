@@ -8,6 +8,8 @@ PyHeck is a case conversion library (for converting strings to snake_case, camel
 pip install pyheck
 ```
 
+Note: requires Python >= 3.9.
+
 ## Example
 
 ```python
