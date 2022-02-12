@@ -223,6 +223,7 @@ fn shouty_snake_many(strings: Vec<&str>) -> Vec<String> {
         .collect()
 }
 
+/// here is a docstring
 #[pymodule]
 fn pyheck(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(snake, m)?)?;

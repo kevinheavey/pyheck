@@ -1,0 +1,37 @@
+site_name: PyHeck
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: lime
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          selection:
+            docstring_style: google
+            filters:
+              - "!^_" # exlude all members starting with _
+              - "^__init__$" # but always include __init__ modules and methods
+          rendering:
+            show_root_heading: true
+            show_root_full_path: false
+repo_url: https://github.com/kevinheavey/pyheck
+repo_name: kevinheavey/pyheck
+site_url: https://kevinheavey.github.io/pyheck/
+nav:
+  - index.md
+  - api_reference.md
+extra_css:
+  - css/mkdocstrings.css
