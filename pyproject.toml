@@ -5,7 +5,7 @@ description = "Python bindings for heck, the Rust case conversion library"
 authors = ["kevinheavey <kevinheavey123@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.7"
 
 [tool.poetry.dev-dependencies]
 maturin = "^0.12.9"
