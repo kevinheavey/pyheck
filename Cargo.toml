@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 
 [dependencies.pyo3]
 version = "0.15.1"
-features = ["abi3-py39", "extension-module"]
+features = ["abi3-py37", "extension-module"]
 
 [dependencies]
 heck = { version = "0.4.0", features = ["unicode"] }
