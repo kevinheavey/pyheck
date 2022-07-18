@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyHeck &mdash; PyHeck 0.1.5 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> PyHeck
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">PyHeck</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#module-pyheck">API</a></li>
+<li><a class="reference internal" href="#why-use-pyheck">Why use PyHeck?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">PyHeck</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>PyHeck</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyheck">
+<h1>PyHeck<a class="headerlink" href="#pyheck" title="Permalink to this heading"></a></h1>
+<p>PyHeck is a case conversion library.
+It exists to provide case conversion between common cases like CamelCase and snake_case.
+It is intended to be unicode aware, internally, consistent, and reasonably well performing.</p>
+<p>PyHeck is merely a wrapper around a Rust library <a class="reference external" href="https://docs.rs/heck/latest/heck/">heck</a>.
+Most of this documentation is copied lovingly from the <code class="docutils literal notranslate"><span class="pre">heck</span></code> docs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">pyheck</span></code> function has a <code class="docutils literal notranslate"><span class="pre">_many</span></code> counterpart that operates on a sequence of strings.
+For example, the <code class="docutils literal notranslate"><span class="pre">snake</span></code> function converts a single string to snake case, while
+<code class="docutils literal notranslate"><span class="pre">snake_many</span></code> converts a sequence of strings into a list of snake case strings.
+The <code class="docutils literal notranslate"><span class="pre">_many</span></code> functions achieve high performance by taking advantage of Rust’s parallel features,
+so you should use them in places where they make sense.</p>
+</div>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyheck</span>
+</pre></div>
+</div>
+<p>Note: requires Python &gt;= 3.7.</p>
+</section>
+<section id="module-pyheck">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-pyheck" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.kebab">
+<span class="sig-name descname"><span class="pre">kebab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.kebab" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to kebab-case.</p>
+<p>In kebab-case, word boundaries are indicated by hyphens.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">kebab</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kebab</span><span class="p">(</span><span class="s2">&quot;We are going to inherit the earth.&quot;</span><span class="p">)</span>
+<span class="go">&#39;we-are-going-to-inherit-the-earth&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.kebab_many">
+<span class="sig-name descname"><span class="pre">kebab_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.kebab_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert list of strings to kebab-case.</p>
+<p>In kebab-case, word boundaries are indicated by hyphens.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">kebab_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kebab_many</span><span class="p">([</span><span class="s2">&quot;We are going&quot;</span><span class="p">,</span> <span class="s2">&quot;to inherit the earth.&quot;</span><span class="p">])</span>
+<span class="go">[&#39;we-are-going&#39;, &#39;to-inherit-the-earth&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.lower_camel">
+<span class="sig-name descname"><span class="pre">lower_camel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.lower_camel" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to lowerCamelCase.</p>
+<p>In lowerCamelCase, word boundaries are indicated by capital letters,
+excepting the first word.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">lower_camel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lower_camel</span><span class="p">(</span><span class="s2">&quot;It is we who built these palaces and cities.&quot;</span><span class="p">)</span>
+<span class="go">&#39;itIsWeWhoBuiltThesePalacesAndCities&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.lower_camel_many">
+<span class="sig-name descname"><span class="pre">lower_camel_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.lower_camel_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a list of strings to lowerCamelCase.</p>
+<p>In lowerCamelCase, word boundaries are indicated by capital letters,
+excepting the first word.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">lower_camel_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lower_camel_many</span><span class="p">([</span><span class="s2">&quot;It is we&quot;</span><span class="p">,</span> <span class="s2">&quot;who built these&quot;</span><span class="p">])</span>
+<span class="go">[&#39;itIsWe&#39;, &#39;whoBuiltThese&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.shouty_kebab">
+<span class="sig-name descname"><span class="pre">shouty_kebab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.shouty_kebab" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to SHOUTY-KEBAB-CASE.</p>
+<p>In SHOUTY-KEBAB-CASE, word boundaries are indicated by hyphens and all
+words are in uppercase.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">shouty_kebab</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shouty_kebab</span><span class="p">(</span><span class="s2">&quot;We are going to inherit the earth.&quot;</span><span class="p">)</span>
+<span class="go">&#39;WE-ARE-GOING-TO-INHERIT-THE-EARTH&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.shouty_kebab_many">
+<span class="sig-name descname"><span class="pre">shouty_kebab_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.shouty_kebab_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a list of strings to SHOUTY-KEBAB-CASE.</p>
+<p>In SHOUTY-KEBAB-CASE, word boundaries are indicated by hyphens and all
+words are in uppercase.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">shouty_kebab_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shouty_kebab_many</span><span class="p">([</span><span class="s2">&quot;We are going&quot;</span><span class="p">,</span> <span class="s2">&quot;to inherit the earth.&quot;</span><span class="p">])</span>
+<span class="go">[&#39;WE-ARE-GOING&#39;, &#39;TO-INHERIT-THE-EARTH&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.shouty_snake">
+<span class="sig-name descname"><span class="pre">shouty_snake</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.shouty_snake" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to SHOUTY_SNAKE_CASE.</p>
+<p>In SHOUTY_SNAKE_CASE, word boundaries are indicated by underscores and all
+words are in uppercase.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">shouty_snake</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shouty_snake</span><span class="p">(</span><span class="s2">&quot;That world is growing in this minute.&quot;</span><span class="p">)</span>
+<span class="go">&#39;THAT_WORLD_IS_GROWING_IN_THIS_MINUTE&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.shouty_snake_many">
+<span class="sig-name descname"><span class="pre">shouty_snake_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.shouty_snake_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a list of strings to SHOUTY_SNAKE_CASE.</p>
+<p>In SHOUTY_SNAKE_CASE, word boundaries are indicated by underscores and all
+words are in uppercase.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">shouty_snake_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shouty_snake_many</span><span class="p">([</span><span class="s2">&quot;That world is&quot;</span><span class="p">,</span> <span class="s2">&quot;growing in this minute.&quot;</span><span class="p">])</span>
+<span class="go">[&#39;THAT_WORLD_IS&#39;, &#39;GROWING_IN_THIS_MINUTE&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.snake">
+<span class="sig-name descname"><span class="pre">snake</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.snake" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to snake_case.</p>
+<p>In snake_case, word boundaries are indicated by underscores.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">snake</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">snake</span><span class="p">(</span><span class="s2">&quot;We carry a new world here, in our hearts.&quot;</span><span class="p">)</span>
+<span class="go">&#39;we_carry_a_new_world_here_in_our_hearts&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.snake_many">
+<span class="sig-name descname"><span class="pre">snake_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.snake_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a list of strings to snake_case.</p>
+<p>In snake_case, word boundaries are indicated by underscores.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">snake_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">snake_many</span><span class="p">([</span><span class="s2">&quot;DeviceType&quot;</span><span class="p">,</span> <span class="s2">&quot;fooBar&quot;</span><span class="p">])</span>
+<span class="go">[&#39;device_type&#39;, &#39;foo_bar&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.title">
+<span class="sig-name descname"><span class="pre">title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.title" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to Title Case.</p>
+<p>In Title Case, word boundaries are indicated by spaces, and every word is
+capitalized.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">title</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;We have always lived in slums and holes in the wall.&quot;</span><span class="p">)</span>
+<span class="go">&#39;We Have Always Lived In Slums And Holes In The Wall&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.title_many">
+<span class="sig-name descname"><span class="pre">title_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.title_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a list of strings to Title Case.</p>
+<p>In Title Case, word boundaries are indicated by spaces, and every word is
+capitalized.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">title_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">title_many</span><span class="p">([</span><span class="s2">&quot;We have always&quot;</span><span class="p">,</span> <span class="s2">&quot;lived in slums&quot;</span><span class="p">])</span>
+<span class="go">[&#39;We Have Always&#39;, &#39;Lived In Slums&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.upper_camel">
+<span class="sig-name descname"><span class="pre">upper_camel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.upper_camel" title="Permalink to this definition"></a></dt>
+<dd><p>Convert to UpperCamelCase.</p>
+<p>In UpperCamelCase, word boundaries are indicated by capital letters,
+including the first word.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">upper_camel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">upper_camel</span><span class="p">(</span><span class="s2">&quot;We are not in the least afraid of ruins.&quot;</span><span class="p">)</span>
+<span class="go">&#39;WeAreNotInTheLeastAfraidOfRuins&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyheck.upper_camel_many">
+<span class="sig-name descname"><span class="pre">upper_camel_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyheck.upper_camel_many" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a list of strings to UpperCamelCase.</p>
+<p>In UpperCamelCase, word boundaries are indicated by capital letters,
+including the first word.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyheck</span> <span class="kn">import</span> <span class="n">upper_camel_many</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">upper_camel_many</span><span class="p">([</span><span class="s2">&quot;We are not&quot;</span><span class="p">,</span> <span class="s2">&quot;in the least&quot;</span><span class="p">])</span>
+<span class="go">[&#39;WeAreNot&#39;, &#39;InTheLeast&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="why-use-pyheck">
+<h2>Why use PyHeck?<a class="headerlink" href="#why-use-pyheck" title="Permalink to this heading"></a></h2>
+<p>PyHeck offers <a class="reference external" href="https://gist.github.com/kevinheavey/eb97728437ebd0fc9bdbd94da61347f5">5-10x performance benefits</a> over the established case conversion library, <a class="reference external" href="https://github.com/jpvanhal/inflection">inflection</a>.</p>
+<p>However not all the functions overlap between the two libraries,
+and some apparently similar functions may differ in subtle ways. So be careful to check edge cases in whichever library you choose.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kevin Heavey.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
